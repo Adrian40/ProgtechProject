@@ -1,0 +1,42 @@
+﻿@model AutoKolcsonzoApp.Models.Kolcsonzesek
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Kolcsonzesek</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.KolcsonzesIdeje)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KolcsonzesIdeje)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Autok.Marka)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Autok.Marka)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vevok.VezetekNev)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vevok.VezetekNev)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.KolcsonzesID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

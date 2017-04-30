@@ -1,0 +1,45 @@
+﻿@model IEnumerable<AutoKolcsonzoApp.Models.Kolcsonzesek>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.KolcsonzesIdeje)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Autok.Marka)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Vevok.VezetekNev)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.KolcsonzesIdeje)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Autok.Marka)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Vevok.VezetekNev)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.KolcsonzesID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.KolcsonzesID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.KolcsonzesID })
+        </td>
+    </tr>
+}
+
+</table>

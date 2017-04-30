@@ -170,8 +170,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AutoksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KolcsonzeseksController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\VevoksController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -277,6 +280,21 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Vevoks\Create.cshtml" />
+    <Content Include="Views\Vevoks\Delete.cshtml" />
+    <Content Include="Views\Vevoks\Details.cshtml" />
+    <Content Include="Views\Vevoks\Edit.cshtml" />
+    <Content Include="Views\Vevoks\Index.cshtml" />
+    <Content Include="Views\Autoks\Create.cshtml" />
+    <Content Include="Views\Autoks\Delete.cshtml" />
+    <Content Include="Views\Autoks\Details.cshtml" />
+    <Content Include="Views\Autoks\Edit.cshtml" />
+    <Content Include="Views\Autoks\Index.cshtml" />
+    <Content Include="Views\Kolcsonzeseks\Create.cshtml" />
+    <Content Include="Views\Kolcsonzeseks\Delete.cshtml" />
+    <Content Include="Views\Kolcsonzeseks\Details.cshtml" />
+    <Content Include="Views\Kolcsonzeseks\Edit.cshtml" />
+    <Content Include="Views\Kolcsonzeseks\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

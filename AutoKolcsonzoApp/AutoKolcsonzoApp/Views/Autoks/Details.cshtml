@@ -1,0 +1,50 @@
+﻿@model AutoKolcsonzoApp.Models.Autok
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Autok</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Marka)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Marka)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rendszam)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rendszam)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Szin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Szin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UlesekSzama)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UlesekSzama)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AutoID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
