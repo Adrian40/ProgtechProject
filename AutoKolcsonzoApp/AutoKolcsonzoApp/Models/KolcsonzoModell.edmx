@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AutokolcsonzoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Autok">
+          <Key>
+            <PropertyRef Name="AutoID" />
+          </Key>
+          <Property Name="AutoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Marka" Type="nvarchar" MaxLength="20" />
+          <Property Name="Rendszam" Type="nvarchar" MaxLength="6" />
+          <Property Name="Szin" Type="nvarchar" MaxLength="10" />
+          <Property Name="UlesekSzama" Type="int" />
+        </EntityType>
+        <EntityType Name="Kolcsonzesek">
+          <Key>
+            <PropertyRef Name="KolcsonzesID" />
+          </Key>
+          <Property Name="KolcsonzesID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VevokID" Type="int" Nullable="false" />
+          <Property Name="AutoID" Type="int" Nullable="false" />
+          <Property Name="KolcsonzesIdeje" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vevok">
+          <Key>
+            <PropertyRef Name="VevoID" />
+          </Key>
+          <Property Name="VevoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VezetekNev" Type="nvarchar" MaxLength="50" />
+          <Property Name="KeresztNev" Type="nvarchar" MaxLength="50" />
+          <Property Name="TelefonSzam" Type="nvarchar" MaxLength="20" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Kolcsonzesek_Autok">
+          <End Role="Autok" Type="Self.Autok" Multiplicity="1" />
+          <End Role="Kolcsonzesek" Type="Self.Kolcsonzesek" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Autok">
+              <PropertyRef Name="AutoID" />
+            </Principal>
+            <Dependent Role="Kolcsonzesek">
+              <PropertyRef Name="AutoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kolcsonzesek_Vevok">
+          <End Role="Vevok" Type="Self.Vevok" Multiplicity="1" />
+          <End Role="Kolcsonzesek" Type="Self.Kolcsonzesek" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vevok">
+              <PropertyRef Name="VevoID" />
+            </Principal>
+            <Dependent Role="Kolcsonzesek">
+              <PropertyRef Name="VevokID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AutokolcsonzoModelStoreContainer">
+          <EntitySet Name="Autok" EntityType="Self.Autok" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kolcsonzesek" EntityType="Self.Kolcsonzesek" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vevok" EntityType="Self.Vevok" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Kolcsonzesek_Autok" Association="Self.FK_Kolcsonzesek_Autok">
+            <End Role="Autok" EntitySet="Autok" />
+            <End Role="Kolcsonzesek" EntitySet="Kolcsonzesek" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kolcsonzesek_Vevok" Association="Self.FK_Kolcsonzesek_Vevok">
+            <End Role="Vevok" EntitySet="Vevok" />
+            <End Role="Kolcsonzesek" EntitySet="Kolcsonzesek" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AutokolcsonzoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Autok">
+          <Key>
+            <PropertyRef Name="AutoID" />
+          </Key>
+          <Property Name="AutoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Marka" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Rendszam" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+          <Property Name="Szin" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="UlesekSzama" Type="Int32" />
+          <NavigationProperty Name="Kolcsonzeseks" Relationship="AutokolcsonzoModel.FK_Kolcsonzesek_Autok" FromRole="Autok" ToRole="Kolcsonzesek" />
+        </EntityType>
+        <EntityType Name="Kolcsonzesek">
+          <Key>
+            <PropertyRef Name="KolcsonzesID" />
+          </Key>
+          <Property Name="KolcsonzesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VevokID" Type="Int32" Nullable="false" />
+          <Property Name="AutoID" Type="Int32" Nullable="false" />
+          <Property Name="KolcsonzesIdeje" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Autok" Relationship="AutokolcsonzoModel.FK_Kolcsonzesek_Autok" FromRole="Kolcsonzesek" ToRole="Autok" />
+          <NavigationProperty Name="Vevok" Relationship="AutokolcsonzoModel.FK_Kolcsonzesek_Vevok" FromRole="Kolcsonzesek" ToRole="Vevok" />
+        </EntityType>
+        <EntityType Name="Vevok">
+          <Key>
+            <PropertyRef Name="VevoID" />
+          </Key>
+          <Property Name="VevoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VezetekNev" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KeresztNev" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TelefonSzam" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Kolcsonzeseks" Relationship="AutokolcsonzoModel.FK_Kolcsonzesek_Vevok" FromRole="Vevok" ToRole="Kolcsonzesek" />
+        </EntityType>
+        <EntityContainer Name="AutokolcsonzoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Autoks" EntityType="Self.Autok" />
+          <EntitySet Name="Kolcsonzeseks" EntityType="Self.Kolcsonzesek" />
+          <EntitySet Name="Vevoks" EntityType="Self.Vevok" />
+          <AssociationSet Name="FK_Kolcsonzesek_Autok" Association="AutokolcsonzoModel.FK_Kolcsonzesek_Autok">
+            <End Role="Autok" EntitySet="Autoks" />
+            <End Role="Kolcsonzesek" EntitySet="Kolcsonzeseks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kolcsonzesek_Vevok" Association="AutokolcsonzoModel.FK_Kolcsonzesek_Vevok">
+            <End Role="Vevok" EntitySet="Vevoks" />
+            <End Role="Kolcsonzesek" EntitySet="Kolcsonzeseks" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK_Kolcsonzesek_Autok">
+          <End Type="AutokolcsonzoModel.Autok" Role="Autok" Multiplicity="1" />
+          <End Type="AutokolcsonzoModel.Kolcsonzesek" Role="Kolcsonzesek" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Autok">
+              <PropertyRef Name="AutoID" />
+            </Principal>
+            <Dependent Role="Kolcsonzesek">
+              <PropertyRef Name="AutoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kolcsonzesek_Vevok">
+          <End Type="AutokolcsonzoModel.Vevok" Role="Vevok" Multiplicity="1" />
+          <End Type="AutokolcsonzoModel.Kolcsonzesek" Role="Kolcsonzesek" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vevok">
+              <PropertyRef Name="VevoID" />
+            </Principal>
+            <Dependent Role="Kolcsonzesek">
+              <PropertyRef Name="VevokID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AutokolcsonzoModelStoreContainer" CdmEntityContainer="AutokolcsonzoEntities">
+          <EntitySetMapping Name="Autoks">
+            <EntityTypeMapping TypeName="AutokolcsonzoModel.Autok">
+              <MappingFragment StoreEntitySet="Autok">
+                <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+                <ScalarProperty Name="Marka" ColumnName="Marka" />
+                <ScalarProperty Name="Rendszam" ColumnName="Rendszam" />
+                <ScalarProperty Name="Szin" ColumnName="Szin" />
+                <ScalarProperty Name="UlesekSzama" ColumnName="UlesekSzama" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kolcsonzeseks">
+            <EntityTypeMapping TypeName="AutokolcsonzoModel.Kolcsonzesek">
+              <MappingFragment StoreEntitySet="Kolcsonzesek">
+                <ScalarProperty Name="KolcsonzesID" ColumnName="KolcsonzesID" />
+                <ScalarProperty Name="VevokID" ColumnName="VevokID" />
+                <ScalarProperty Name="AutoID" ColumnName="AutoID" />
+                <ScalarProperty Name="KolcsonzesIdeje" ColumnName="KolcsonzesIdeje" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vevoks">
+            <EntityTypeMapping TypeName="AutokolcsonzoModel.Vevok">
+              <MappingFragment StoreEntitySet="Vevok">
+                <ScalarProperty Name="VevoID" ColumnName="VevoID" />
+                <ScalarProperty Name="VezetekNev" ColumnName="VezetekNev" />
+                <ScalarProperty Name="KeresztNev" ColumnName="KeresztNev" />
+                <ScalarProperty Name="TelefonSzam" ColumnName="TelefonSzam" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
