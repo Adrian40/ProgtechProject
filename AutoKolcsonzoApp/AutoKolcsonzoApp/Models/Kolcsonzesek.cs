@@ -14,7 +14,17 @@ namespace AutoKolcsonzoApp.Models
     
     public partial class Kolcsonzesek
     {
-        public int KolcsonzesID { get; set; }
+        private int kolcsonzesID;
+        public int KolcsonzesID
+        {
+            get { return kolcsonzesID; }
+            set
+            {
+                if (value > 0 && value < 10)
+                    kolcsonzesID = value;
+                else throw new Exception("Hibás kolcsonzesID :" + value);
+            }
+        }
         public int VevokID { get; set; }
         public int AutoID { get; set; }
         public System.DateTime KolcsonzesIdeje { get; set; }
