@@ -1,10 +1,10 @@
 ﻿@model AutoKolcsonzoApp.Models.Kolcsonzesek
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Részletek";
 }
 
-<h2>Details</h2>
+<h2>Részletek</h2>
 
 <div>
     <h4>Kolcsonzesek</h4>
@@ -37,6 +37,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.KolcsonzesID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Szerkeszt", "Szerkeszt", new { id = Model.KolcsonzesID }) |
+    @Html.ActionLink("Vissza a listához", "Index")
 </p>

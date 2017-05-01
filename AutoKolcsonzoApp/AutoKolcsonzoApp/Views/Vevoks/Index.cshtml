@@ -7,7 +7,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Új", "Létrehoz")
 </p>
 <table class="table">
     <tr>
@@ -41,9 +41,9 @@
             @Html.DisplayFor(modelItem => item.Email)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.VevoID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.VevoID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.VevoID })
+            @Html.ActionLink("Szerkeszt", "Szerkeszt", new { id=item.VevoID }) |
+            @Html.ActionLink("Részletek", "Részletek", new { id=item.VevoID }) |
+            @Html.ActionLink("Törlés", "Törlés", new { id=item.VevoID })
         </td>
     </tr>
 }

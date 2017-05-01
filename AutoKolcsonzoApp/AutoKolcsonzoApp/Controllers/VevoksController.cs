@@ -105,7 +105,7 @@ namespace AutoKolcsonzoApp.Controllers
         }
 
         // POST: Vevoks/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("Törlés")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

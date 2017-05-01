@@ -114,7 +114,7 @@ namespace AutoKolcsonzoApp.Controllers
         }
 
         // POST: Kolcsonzeseks/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("Törlés")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
